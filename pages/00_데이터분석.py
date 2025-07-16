@@ -71,14 +71,22 @@ chart = alt.Chart(top3).mark_bar(size=60).encode(
 # 출력
 st.altair_chart(chart, use_container_width=True)
 
-# 해설 텍스트
+# 해설 텍스트 (가독성 개선)
 top1, top2, top3_type = top3["MBTI"].tolist()
 st.markdown(f"""
-<div style='padding: 10px; background-color: #f0f8ff; border-radius: 10px; font-size: 16px; line-height: 1.6'>
-    ✅ <strong>{top1}</strong> 유형이 가장 많았어요!<br>
-    🥈 그 다음은 <strong>{top2}</strong>,<br>
-    🥉 그리고 <strong>{top3_type}</strong> 유형도 많이 나타났어요.<br><br>
-    중학생 여러분, 혹시 이 중에 여러분 MBTI도 있나요? 😊
+<div style='
+    padding: 16px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    font-size: 17px;
+    color: #333;
+    line-height: 1.6;
+    border: 1px solid #ddd;
+'>
+✅ <strong>{top1}</strong> 유형이 가장 많았어요!<br>
+🥈 그 다음은 <strong>{top2}</strong>,<br>
+🥉 그리고 <strong>{top3_type}</strong> 유형도 많이 나타났어요.<br><br>
+중학생 여러분, 혹시 이 중에 여러분 MBTI도 있나요? 😊
 </div>
 """, unsafe_allow_html=True)
 
