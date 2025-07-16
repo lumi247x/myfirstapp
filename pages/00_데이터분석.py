@@ -10,15 +10,15 @@ st.set_page_config(
     layout="centered"
 )
 
-# 전체 배경 및 텍스트 색상 설정 (다크+화이트 텍스트 스타일)
+# 검정 배경 + 흰색 텍스트 설정
 st.markdown("""
     <style>
     body {
-        background-color: #223344;
+        background-color: black;
         color: white;
     }
     .stApp {
-        background-color: #223344;
+        background-color: black;
         color: white;
     }
     h1, h2, h3, h4, h5, h6, p {
@@ -64,7 +64,7 @@ top3 = mbti_series.sort_values(ascending=False).head(3).reset_index()
 top3.columns = ["MBTI", "비율"]
 top3["백분율"] = (top3["비율"] * 100).round(2)
 
-# Altair 색상 리스트
+# 색상 리스트 (MBTI별 막대 색)
 color_list = ['#FF6B6B', '#FFD93D', '#6BCB77']
 
 # Altair 그래프
@@ -93,17 +93,17 @@ chart = alt.Chart(top3).mark_bar(size=60).encode(
 # 출력
 st.altair_chart(chart, use_container_width=True)
 
-# 해설 텍스트 박스 (다크 배경용)
+# 설명 박스 (짙은 회색 계열로 대비 강조)
 top1, top2, top3_type = top3["MBTI"].tolist()
 st.markdown(f"""
 <div style='
     padding: 16px;
-    background-color: #2f4f70;
+    background-color: #1a1a1a;
     border-radius: 12px;
     font-size: 17px;
     color: white;
     line-height: 1.6;
-    border: 1px solid #446688;
+    border: 1px solid #444;
 '>
 ✅ <strong>{top1}</strong> 유형이 가장 많았어요!<br>
 🥈 그 다음은 <strong>{top2}</strong>,<br>
@@ -112,6 +112,6 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# 데이터표 보기
+# 데이터표
 with st.expander("📑 데이터 보기"):
     st.dataframe(top3.style.format({"비율": "{:.4f}", "백분율": "{:.2f}%"}))
