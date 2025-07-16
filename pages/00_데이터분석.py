@@ -7,8 +7,18 @@ import os
 st.set_page_config(
     page_title="MBTI 분석 - 대한민국",
     page_icon="🧠",
-    layout="centered"
+    layout="centered",
+    initial_sidebar_state="auto"
 )
+
+# 전체 배경색 스타일 삽입 (아이보리톤)
+st.markdown("""
+    <style>
+    body {
+        background-color: #fefefe;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 # 상단 헤더
 st.markdown("""
@@ -64,14 +74,15 @@ chart = alt.Chart(top3).mark_bar(size=60).encode(
     titleFontSize=16
 ).configure_title(
     fontSize=20,
+    font='sans-serif',
     anchor='start',
-    color="#333"
+    color="#3366cc"  # 제목 글씨색 더 선명하게 변경
 )
 
 # 출력
 st.altair_chart(chart, use_container_width=True)
 
-# 해설 텍스트 (가독성 개선)
+# 해설 텍스트
 top1, top2, top3_type = top3["MBTI"].tolist()
 st.markdown(f"""
 <div style='
